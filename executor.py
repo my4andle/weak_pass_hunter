@@ -153,7 +153,11 @@ def nmap_for_vsphere_version(targets_file: str) -> dict:
         os._exit(1)
     
     # python nmap does not take a file for the hosts parameter, you can trick it with setting hosts to an ip and adding -iL
-    full_results = my_scanner.scan(hosts='192.168.0.1', arguments='-Pn -p443 --open --script vmware-version -iL {}'.format(targets_file))
+    # nmap switches
+    #   -n: no dns
+    #   -Pn: no ping
+    #   --disable-arp-ping: disable default arping for systems on same layer2
+    full_results = my_scanner.scan(hosts='192.168.0.1', arguments='-n -Pn -p443 --open --script vmware-version -iL {}'.format(targets_file))
     scan_results = full_results['scan']
     vcenter_servers = []
     esxi_servers = []
@@ -250,11 +254,11 @@ def login_concurrent(protocol: str, targets: list, username: str, password: str)
     logging.info("Entering login_concurrent for protocol: {}".format(protocol))
     results_list = []
     with concurrent.futures.ProcessPoolExecutor(max_workers=50) as pool:
-        if protocol == "ssh":
+        if protocol.lower() == "ssh":
             results = {pool.submit(login_ssh, target, username, password): target for target in targets}
-        elif protocol == "vsphereapi":
+        elif protocol.lower() == "vsphereapi":
             results = {pool.submit(login_vsphere, target, username, password): target for target in targets}
-        elif protocol == "rdp":
+        elif protocol.lower() == "rdp":
             results = {pool.submit(login_rdp, target, username, password): target for target in targets}
         else:
             logging.debug("Error in login_concurrent check protocol selection logic")
