@@ -15,20 +15,22 @@ import os
 import sys
 import ssl
 import json
-import nmap
 import time
 import sqlite3
 import logging
-import paramiko
 import ipaddress
 import subprocess
 import concurrent.futures
 
-from docopt import docopt
-from getpass import getpass
-from datetime import datetime
-from pyVmomi import vim
-from pyVim.connect import SmartConnect
+try:
+    import nmap
+    import paramiko
+    from docopt import docopt
+    from pyVmomi import vim
+    from pyVim.connect import SmartConnect
+except ImportError as ex:
+    logging.info("Make sure to: pip3 install -r requirements.txt")
+    logging.info(str(ex))
 
 
 class Users:
@@ -80,6 +82,18 @@ def validate_ipv4(ip: str) -> bool:
     except Exception as ex:
         logging.info("[-] Subnet validation failed: {}".format(ip))
         return False
+
+def is_program_install(program: str) -> bool:
+    """
+    Check if program is installed
+    """
+    try:
+        logging.info("Verifying that {} exists".format(program))
+        subprocess.call([program])
+        return True
+    except OSError as ex:
+        logging.info("Exiting: please install {} to continue.".format(program))
+        sys.exit(1)
 
 def create_file(file_name: str, username: str, password: str, protocol: str, data: list) -> str:
     """
@@ -346,6 +360,7 @@ def main():
                 data=ssh_failure_list
             )
     elif opts['--rdp']:
+        is_program_install("xfreerdp")
         rdp_results = login_concurrent(
             protocol="rdp",
             targets=targets_list,

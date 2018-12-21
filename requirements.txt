@@ -1,0 +1,4 @@
+docopt
+paramiko
+pyvmomi
+python-nmap
