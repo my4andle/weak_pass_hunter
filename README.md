@@ -1,5 +1,5 @@
 # weak_pass_hunter
-Hunt down systems using a password of your choosing.  Especially good if you work in a large environment and have a lot of unmanaged systems.  
+Designed to test a single password against a single protocol
 
 # masscan first
 I highly recommend masscanning for the desired port and then running this tool against those results.  
@@ -22,6 +22,9 @@ Options:
   --rdp                 Attempt brute force of rdp  
   --vsphereapi          Attempt brute force of vsphere api  
 """  
+
+# Output
+Logfiles are generated for both successful and failed logins.
 
 # Warning
 I am not responsible for the usage of this tool.  This is provided to assist teams in securing their infrastructure by finding weak credentials.  
