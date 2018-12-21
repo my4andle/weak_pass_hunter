@@ -1,4 +1,4 @@
-docopt
-paramiko
-pyvmomi
-python-nmap
+docopt==0.6.2
+paramiko==2.4.2
+python-nmap==0.6.1
+pyvmomi==6.7.1
