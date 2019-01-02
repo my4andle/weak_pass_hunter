@@ -22,7 +22,7 @@ import ipaddress
 import subprocess
 import concurrent.futures
 
-from getpass import getpas
+from getpass import getpass
 from datetime import datetime
 
 try:
