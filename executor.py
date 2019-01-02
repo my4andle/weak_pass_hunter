@@ -400,7 +400,7 @@ def main():
             esxi_results_file_succeed = "{}_executor_results_esxi_succeeded.txt".format(TIME)
             create_file(
                 file_name=esxi_results_file_succeed,
-                username=username,
+                username=users.esxi_user,
                 password=password,
                 protocol="vsphereAPI",
                 data=esxi_success_list
@@ -409,7 +409,7 @@ def main():
             esxi_results_file_failed = "{}_executor_results_esxi_failed.txt".format(TIME)
             create_file(
                 file_name=esxi_results_file_failed,
-                username=username,
+                username=users.esxi_user,
                 password=password,
                 protocol="vsphereAPI",
                 data=esxi_failure_list
@@ -426,7 +426,7 @@ def main():
             vc_results_file_succeed = "{}_executor_results_esxi_succeeded.txt".format(TIME)
             create_file(
                 file_name=vc_results_file_succeed,
-                username=username,
+                username=users.vc_user,
                 password=password,
                 protocol="vsphereAPI",
                 data=vc_success_list
@@ -435,7 +435,7 @@ def main():
             vc_results_file_failed = "{}_executor_results_esxi_failed.txt".format(TIME)
             create_file(
                 file_name=vc_results_file_failed,
-                username=username,
+                username=users.vc_user,
                 password=password,
                 protocol="vsphereAPI",
                 data=vc_failure_list
