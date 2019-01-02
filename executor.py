@@ -18,10 +18,11 @@ import json
 import time
 import sqlite3
 import logging
-import datetime
 import ipaddress
 import subprocess
 import concurrent.futures
+
+from datetime import datetime
 
 try:
     import nmap
