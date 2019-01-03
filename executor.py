@@ -426,7 +426,7 @@ def main():
         )
         vc_success_list, vc_failure_list = sort_results_dict(vc_results)
         if vc_success_list:
-            vc_results_file_succeed = "{}_executor_results_esxi_succeeded.txt".format(TIME)
+            vc_results_file_succeed = "{}_executor_results_vc_succeeded.txt".format(TIME)
             create_file(
                 file_name=vc_results_file_succeed,
                 username=users.vc_user,
@@ -435,7 +435,7 @@ def main():
                 data=vc_success_list
             )
         if vc_failure_list:
-            vc_results_file_failed = "{}_executor_results_esxi_failed.txt".format(TIME)
+            vc_results_file_failed = "{}_executor_results_vc_failed.txt".format(TIME)
             create_file(
                 file_name=vc_results_file_failed,
                 username=users.vc_user,
