@@ -1,8 +1,0 @@
-2019-01-02 14:25:48,430 - INFO - Parameters passed: {'--help': False,
- '--rdp': False,
- '--rhosts': 'test',
- '--ssh': False,
- '--user': None,
- '--vsphereapi': True,
- '-h': False,
- 'bruteforce': True}
